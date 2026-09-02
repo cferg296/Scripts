@@ -7,7 +7,6 @@ WALLPAPER_DIR="$HOME/Pictures/Wallpaper"
 
 SDDM_DIR="/usr/share/sddm/themes/sugar-dark"
 SDDM_BACKGROUND="$SDDM_DIR/Background.jpg"
-SDDM_BACKUP="$HOME/backups/sugar-dark/Background.jpg"
 
 clear
 
@@ -107,14 +106,6 @@ magick "$wallpaper" "$TEMP_BACKGROUND"
 if [ ! -f "$SDDM_BACKGROUND" ]; then
     echo "Error: Existing SDDM background not found:"
     echo "$SDDM_BACKGROUND"
-    exit 1
-fi
-
-if [ ! -f "$SDDM_BACKUP" ]; then
-    echo "Error: SDDM backup not found:"
-    echo "$SDDM_BACKUP"
-    echo
-    echo "Refusing to modify the real SDDM theme."
     exit 1
 fi
 
