@@ -8,6 +8,8 @@ WALLPAPER_DIR="$HOME/Pictures/Wallpaper"
 SDDM_DIR="/usr/share/sddm/themes/sugar-dark"
 SDDM_BACKGROUND="$SDDM_DIR/Background.jpg"
 
+HYPRLOCK_CONFIG="$HOME/.config/hypr/hyprlock/general/background.conf"
+
 clear
 
 # --------------------------------------------------
@@ -41,6 +43,12 @@ if [ ! -d "$SDDM_DIR" ]; then
     echo "Error: SDDM theme directory not found:"
     echo "$SDDM_DIR"
     exit 1
+fi
+
+if [ ! -f "$HYPRLOCK_CONFIG" ]; then
+	echo "Error: Hyprlock background config not found:"
+	echo "$HYPRLOCK_CONFIG"
+	exit 1
 fi
 
 # --------------------------------------------------
@@ -85,6 +93,17 @@ sed -i \
 pkill hyprpaper 2>/dev/null || true
 hyprpaper >/dev/null 2>&1 &
 
+
+
+# --------------------------------------------------
+# Update Hyprlock background
+# --------------------------------------------------
+
+sed -i \
+    "s|^[[:space:]]*path = .*|    path = $wallpaper|" \
+    "$HYPRLOCK_CONFIG"
+
+
 # --------------------------------------------------
 # Prepare SDDM background
 # --------------------------------------------------
@@ -124,6 +143,9 @@ echo "Wallpaper changed successfully."
 echo
 echo "Desktop:"
 echo "  $wallpaper"
+echo
+echo "Lock screen:"
+echo "  $HYPRLOCK_CONFIG"
 echo
 echo "SDDM:"
 echo "  $SDDM_BACKGROUND"
