@@ -1,6 +1,8 @@
 #!/bin/bash
 
-sudo pacman -Syu
-#yay
-exit
-notify-send 'The system has been updated!'
+if sudo pacman -Syu; then
+    notify-send 'The system has been updated!'
+else
+    notify-send 'The update has failed!'
+fi
+pkill -RTMIN+8 waybar
