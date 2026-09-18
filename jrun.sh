@@ -14,11 +14,11 @@ JAVA_PID=$$
                 window = \"$WINDOW\"
             })"
 
-            hyprctl -i 0 dispatch "hl.dsp.window.resize({
-                x = 1000,
-                y = 700,
-                window = \"$WINDOW\"
-            })"
+            #hyprctl -i 0 dispatch "hl.dsp.window.resize({
+             #   x = 1000,
+              #  y = 700,
+               # window = \"$WINDOW\"
+            #})"
 
             hyprctl -i 0 dispatch "hl.dsp.window.center({
                 window = \"$WINDOW\"
